@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+
+<div class="col-md-4 mt-5">
+    <form method="POST" action="dashboard">
+        {% csrf_token %}
+        <h3 class="bg bg-primary text-white text-center">To Do Form </h3>
+        <div class="mb-3">
+            <label for="id-title" class="form-label">Emp Name</label>
+            <input type="text" name="title" class="form-control" id="id-title" placeholder="Enter Name">
+        </div>
+        <div class="mb-3">
+            <label for="id_detail" class="form-label">Address Location</label>
+            <input class="form-control" name="detail" id="id_detail" pllaceholder="Enter Location - Address">
+        </div>
+        <div class="mb-3">
+            <select class="form-select" name="cat" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="P">Personal</option>
+                <option value="O">Office</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="id_date" class="form-label">Date Of Joining</label>
+            <input class="form-control" name="date" id="id_date" type="date">
+        </div>
+        <input type="submit" value="CREATE" class="btn btn-primary">
+    </form>
+    <h4> Filter by Address</h4>
+    <hr>
+    <p><a href="Mumbai">By Mumbai</a></p>
+    <p><a href="Delhi">By Delhi</a></p>
+    <p><a href="Bangalore">By Bangalore</a></p>
+</div>
+
+<div class="col-md-8 mt-5">
+    <h3 class="bg bg-primary text-white text-center">TASK</h3>
+        <table class="table table-hover table-hovered">
+        <thead>
+          <tr>
+            <th scope="col">Emp Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Category</th>
+            <th scope="col">Date Of Joining</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+       
+        <tbody>
+        {% for x in data %}
+            <tr>
+            <td>{{x.title}}</td>
+            <td>{{x.detail}}</td>
+            <td>{{x.cat}}</td>
+            <td>{{x.date}}</td>
+            <td><a href="edit/{{x.id}}"><button class="btn btn-primary"> Edit</button></a></td>
+            <td><a href="delete/{{x.id}}"><button class="btn btn-danger"> Delete</button></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+</div>
+
+
+{% endblock 'main' %}

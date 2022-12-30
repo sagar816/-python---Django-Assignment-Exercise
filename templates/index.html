@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+    <h1> This is home page </h1>
+    <button onclick="hello()">Click Me</button>
+    <img src="{% static 'images/car.jpg' %}" alt="'car" height="400px" width="1000px">
+
+{% endblock 'main' %}

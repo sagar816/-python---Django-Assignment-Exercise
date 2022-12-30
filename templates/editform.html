@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+
+<div class="col-md-4 mt-5">
+    {% for x in data %}
+    <form method="POST" action="/edit/{{x.id}}">
+        {% csrf_token %}
+        <h3 class="bg bg-primary text-white text-center">To Do Form</h3>
+        <div class="mb-3">
+            <label for="id-title" class="form-label">Title</label>
+            <input type="text" name="title" value="{{x.title}}"  class="form-control" id="id-title" placeholder="Enter Title">
+        </div>
+        <div class="mb-3">
+            <label for="id_detail" class="form-label">Example Details</label>
+            <textarea class="form-control" name="detail" id="id_detail" rows="3">{{x.detail}}</textarea>
+        </div>
+        <div class="mb-3">
+            <select class="form-select" name="cat" aria-label="Default select example">
+                <option selected>{{x.cat}}</option>
+                <option value="P">Personal</option>
+                <option value="O">Office</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="id_date" class="form-label">Date</label>
+            <input class="form-control" value="{{x.date}}" name="date" id="id_date" type="date">
+        </div>
+        <input type="submit" value="UPDATE" class="btn btn-primary">
+    </form>
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock 'main' %}
